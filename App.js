@@ -1,11 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, View, FlatList } from "react-native";
+import MessageItem from "./components/messageItem";
+import AddMessage from "./components/addMessage";
 
 export default function App() {
+  const [messages, addMessages] = useState([]);
+
+  const pressHandler = (key) => {
+    addMessages((prevMessages) => {
+      return prevMessages;
+    });
+  };
+
+  const submitHandler = (text) => {
+    setText("");
+    addMessages((prevMessages) => {
+      return [{ text, key: Math.random().toString() }, ...prevMessages];
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.content}>
+        <View style={styles.list}>
+          <AddMessage submitHandler={submitHandler} />
+          <FlatList
+            data={messages}
+            renderItem={({ item }) => (
+              <MessageItem item={item} pressHandler={pressHandler} />
+            )}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -13,8 +39,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
   },
+  content: {
+    padding: 40,
+  },
+  list: {},
 });
