@@ -1,14 +1,18 @@
+//basic imports
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
-export default function MessageItem({ pressHandler, item }) {
-  return (
-    <TouchableOpacity onPress={() => pressHandler(item.key)}>
-      <Text style={styles.item}>{item.text}</Text>
-    </TouchableOpacity>
-  );
+/*
+exports the function "MessageItem" as a component/file(?)
+*/
+export default function MessageItem(props) {
+  /* takes each item its given and uses the "item" object to give it style,
+     then it passes the object as an argument of the component(?)
+  */
+  return <Text style={styles.item}>{props.item}</Text>;
 }
 
+// styles
 const styles = StyleSheet.create({
   item: {
     padding: 16,

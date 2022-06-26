@@ -1,10 +1,16 @@
+// basic imports
 import React, { useState } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
-export default function AddMessage({ submitHandler }) {
+// exports the function AddMessage as component/file(?)
+export default function AddMessage(props) {
+  // creates a value and a function to update the value with useState
   [text, setText] = useState("");
 
-  const changeHandler = (val) => {
+  /* arrow function that takes whatever is written into textInput box and uses
+     setText to update the state of that value in the script.
+  */
+  const handleChangeText = (val) => {
     setText(val);
   };
 
@@ -13,14 +19,22 @@ export default function AddMessage({ submitHandler }) {
       <TextInput
         style={styles.input}
         placeholder="..."
-        onChangeText={changeHandler}
+        // takes the text that is changed and passes it to "handleChangeText"
+        onChangeText={handleChangeText}
+        // updates the state value in the TextInput box(?)
         value={text}
       />
-      <Button color="coral" onPress={() => submitHandler(text)} title="SEND" />
+      {/* creates a button, and makes it so when you press it, the
+          "handleMessageSubmit" function is called, by passing the key of the
+          object and a parameter into the "AddMessage" function. (I think its an
+          object, but not sure where the object was created?)
+      */}
+      <Button color="coral" onPress={() => props.onSubmit(text)} title="SEND" />
     </View>
   );
 }
 
+// styles
 const styles = StyleSheet.create({
   input: {
     marginBottom: 10,
