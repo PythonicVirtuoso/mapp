@@ -1,0 +1,10 @@
+The order of the code:
+
+-first it runs the handleMessageSubmit function when I submit a message. This
+function changes the array and sends it to the flatlist where the array is rendered
+in the messageItem function. Then when I press on the message in the UI, the array 
+re-renders with the pressHandler function, in which the scripts state is updated.
+
+-the array filter function takes an automatic parameter, in this case
+it's called "message". This "message" parameter gets the value of
+whatever the element it's iterating over is.

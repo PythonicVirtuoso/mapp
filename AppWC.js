@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import MessageItem from "./components/messageItem";
 import AddMessage from "./components/addMessage";
@@ -8,7 +8,9 @@ export default function App() {
 
   const handleMessageSubmit = (text) => {
     setText("");
-    setMessages([text, ...messages]);
+    setMessages((prevMessages) => {
+      return [{ text, date: new Date().toDateString() }, ...prevMessages];
+    });
   };
 
   return (
@@ -36,3 +38,4 @@ const styles = StyleSheet.create({
   },
   list: {},
 });
+*/

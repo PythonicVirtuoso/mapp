@@ -1,18 +1,19 @@
-//basic imports
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-/*
-exports the function "MessageItem" as a component/file(?)
-*/
 export default function MessageItem(props) {
-  /* takes each item its given and uses the "item" object to give it style,
-     then it passes the object as an argument of the component(?)
-  */
-  return <Text style={styles.item}>{props.item}</Text>;
+  //console.log(props);
+
+  return (
+    <View style={styles.item}>
+      <TouchableOpacity onPress={() => props.pressHandler(props.index)}>
+        <Text style={styles.item}>{props.item.text} </Text>
+        <Text> {props.item.time}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
-// styles
 const styles = StyleSheet.create({
   item: {
     padding: 16,
@@ -22,5 +23,6 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderRadius: 1,
     borderRadius: 10,
+    flexDirection: "column",
   },
 });
