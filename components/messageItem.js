@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { MenuView } from "@react-native-menu/menu";
 
-const messageItem = () => {
+export default function MessageItem(props) {
   return (
     <View style={styles.container}>
       <MenuView
@@ -71,13 +71,15 @@ const messageItem = () => {
         ]}
         shouldOpenOnLongPress={true}
       >
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Test</Text>
+        <View style={styles.item}>
+          <Text style={styles.item}>{props.item.text} </Text>
+          <Text> {props.item.time}</Text>
         </View>
+        ;
       </MenuView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   item: {
