@@ -16,7 +16,7 @@ export default function MessageItem(props) {
           visible={visible}
           onDismiss={closeMenu}
           anchor={
-            <TouchableOpacity onPress={() => openMenu}>
+            <TouchableOpacity onPress={openMenu}>
               <Text style={styles.item}>{props.item.text} </Text>
               <Text> {props.item.time}</Text>
             </TouchableOpacity>
