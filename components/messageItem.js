@@ -1,83 +1,34 @@
-import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { MenuView } from "@react-native-menu/menu";
+import * as React from "react";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { Menu, Divider, Provider } from "react-native-paper";
 
 export default function MessageItem(props) {
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
+
   return (
-    <View style={styles.container}>
-      <MenuView
-        title="Menu Title"
-        onPressAction={({ nativeEvent }) => {
-          console.warn(JSON.stringify(nativeEvent));
-        }}
-        actions={[
-          {
-            id: "add",
-            titleColor: "#2367A2",
-            image: Platform.select({
-              ios: "plus",
-              android: "ic_menu_add",
-            }),
-            imageColor: "#2367A2",
-            subactions: [
-              {
-                id: "nested1",
-                title: "Nested action",
-                titleColor: "rgba(250,180,100,0.5)",
-                subtitle: "State is mixed",
-                image: Platform.select({
-                  ios: "heart.fill",
-                  android: "ic_menu_today",
-                }),
-                imageColor: "rgba(100,200,250,0.3)",
-                state: "mixed",
-              },
-              {
-                id: "nestedDestructive",
-                title: "Destructive Action",
-                attributes: {
-                  destructive: true,
-                },
-                image: Platform.select({
-                  ios: "trash",
-                  android: "ic_menu_delete",
-                }),
-              },
-            ],
-          },
-          {
-            id: "share",
-            title: "Share Action",
-            titleColor: "#46F289",
-            subtitle: "Share action on SNS",
-            image: Platform.select({
-              ios: "square.and.arrow.up",
-              android: "ic_menu_share",
-            }),
-            imageColor: "#46F289",
-            state: "on",
-          },
-          {
-            id: "destructive",
-            title: "Destructive Action",
-            attributes: {
-              destructive: true,
-            },
-            image: Platform.select({
-              ios: "trash",
-              android: "ic_menu_delete",
-            }),
-          },
-        ]}
-        shouldOpenOnLongPress={true}
-      >
-        <View style={styles.item}>
-          <Text style={styles.item}>{props.item.text} </Text>
-          <Text> {props.item.time}</Text>
-        </View>
-        ;
-      </MenuView>
-    </View>
+    <Provider>
+      <View style={styles.item}>
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={
+            <TouchableOpacity onPress={() => openMenu}>
+              <Text style={styles.item}>{props.item.text} </Text>
+              <Text> {props.item.time}</Text>
+            </TouchableOpacity>
+          }
+        >
+          <Menu.Item onPress={() => {}} title="Item 1" />
+          <Menu.Item onPress={() => {}} title="Item 2" />
+          <Divider />
+          <Menu.Item onPress={() => {}} title="Item 3" />
+        </Menu>
+      </View>
+    </Provider>
   );
 }
 
