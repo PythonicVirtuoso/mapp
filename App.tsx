@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import MessageItem from "./components/messageItem";
 import AddMessage from "./components/addMessage";
+import { Provider } from "react-native-paper";
 
 export default function App() {
   const [messages, setMessages] = useState([]);
@@ -26,23 +27,25 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.list}>
-          <AddMessage onSubmit={handleMessageSubmit} />
-          <FlatList
-            data={messages}
-            renderItem={({ item, index }) => (
-              <MessageItem
-                item={item}
-                pressHandler={pressHandler}
-                index={index}
-              />
-            )}
-          />
+    <Provider>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <View style={styles.list}>
+            <AddMessage onSubmit={handleMessageSubmit} />
+            <FlatList
+              data={messages}
+              renderItem={({ item, index }) => (
+                <MessageItem
+                  item={item}
+                  pressHandler={pressHandler}
+                  index={index}
+                />
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </Provider>
   );
 }
 
