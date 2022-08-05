@@ -27,7 +27,12 @@ export default function MessageItem(props) {
           }}
           title="Delete"
         />
-        <Menu.Item onPress={() => {}} title="Item 2" />
+        <Menu.Item
+          onPress={() => {
+            props.editFunction();
+          }}
+          title="edit"
+        />
         <Divider />
         <Menu.Item onPress={() => {}} title="Item 3" />
       </Menu>
